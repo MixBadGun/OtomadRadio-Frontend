@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<head>
+    <meta name="referrer" content="no-referrer" />
+</head>
+<body>
+<div class="bottom">
+    <div class="info">
+        <div class="vote-box">
+            <div class="vote"><svg t="1705200891470" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4224" width="4.75rem" height="4.75rem"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" p-id="4225"></path><path d="M719.4 499.1l-296.1-215c-10.6-7.7-25.3-0.2-25.3 12.9v430c0 13.1 14.8 20.5 25.3 12.9l296.1-215c8.8-6.4 8.8-19.4 0-25.8z m-257.6 134V390.9L628.5 512 461.8 633.1z" p-id="4226"></path></svg></div>
+            <!-- <div class="small-vote">票</div> -->
+        </div>
+        <div class="work">
+            <div class="title">{{ title }}</div>
+            <div class="id">av{{ id }}</div>
+        </div>
+    </div>
+
+    <div class="uploader">
+        <div class="avatar">
+        <img src="{{ avatar }}" />
+        </div>
+        <div class="text">
+        <span class="name">{{ uploader }}</span>
+        <div class="badge-repost">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M19.5 8H17V6C17 4.9 16.1 4 15 4H3C1.9 4 1 4.9 1 6V15C1 16.1 1.9 17 3 17C3 18.66 4.34 20 6 20C7.66 20 9 18.66 9 17H15C15 18.66 16.34 20 18 20C19.66 20 21 18.66 21 17H22C22.55 17 23 16.55 23 16V12.67C23 12.24 22.86 11.82 22.6 11.47L20.3 8.4C20.11 8.15 19.81 8 19.5 8ZM6 18C5.45 18 5 17.55 5 17C5 16.45 5.45 16 6 16C6.55 16 7 16.45 7 17C7 17.55 6.55 18 6 18ZM19.5 9.5L21.46 12H17V9.5H19.5ZM18 18C17.45 18 17 17.55 17 17C17 16.45 17.45 16 18 16C18.55 16 19 16.45 19 17C19 17.55 18.55 18 18 18Z"
+            />
+            </svg>
+
+            转载
+        </div>
+        </div>
+    </div>
+</div>
+<style>
+    :root {
+        --c-accent: #f06e8e;
+    }
+    html {
+        font-size: 25px;
+    }
+    @keyframes slidein {
+        from {transform: translateY(-5rem);}
+        to {transform: translateY(0);}
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        /* background-color: gray; */
+        width: 100vw;
+        height: 100vh;
+        font-family: 'HarmonyOS Sans SC';
+        overflow: hidden;
+    }
+    .bottom {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        width: 100%;
+        overflow: hidden;
+        padding: 0.5rem;
+    }
+    .info {
+        display: flex;
+        align-items: center;
+        font-weight: bolder;
+        flex-grow: 1;
+        overflow: hidden;
+    }
+    .vote-box {
+        display: flex;
+        align-items: baseline;
+    }
+    .vote {
+        font-size: 4.75rem;
+        font-family: 'Montserrat';
+        color: rgb(17, 17, 17);
+        display: flex;
+        filter: drop-shadow(0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2));
+        stroke: rgba(255, 255, 255, 0.75);
+        stroke-width: 0.5rem;
+        animation-name: slidein;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    .small-vote {
+        font-size: 1.2rem;
+        text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
+        -webkit-text-stroke: 0.05rem rgba(255, 255, 255, 0.75);
+        animation-name: slidein;
+        animation-duration: 1s;
+        animation-delay: 0.1s;
+        animation-fill-mode: forwards;
+        transform: translateY(5rem);
+        animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    .work {
+        display: flex;
+        overflow: hidden;
+        flex-direction: column;
+        margin-left: 0.25rem;
+        animation-name: slidein;
+        animation-duration: 1s;
+        animation-delay: 0.2s;
+        animation-fill-mode: forwards;
+        transform: translateY(6rem);
+        animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    .title {
+        font-size: 2.8rem;
+        color: rgb(255, 255, 255);
+        text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
+        -webkit-text-stroke: 0.075rem rgba(0, 0, 0, 0.75);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .id {
+        font-size: 1.5rem;
+        font-family: 'Montserrat';
+        margin-top: -0.4rem;
+        text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
+        -webkit-text-stroke: 0.05rem rgba(255, 255, 255, 0.75);
+    }
+    .uploader {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 1em;
+        padding: 1em;
+        font-size: 20px;    /* 定义父元素大小 */
+        border-radius: 0.5em;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.5);
+        white-space: nowrap;
+        animation-name: slidein;
+        animation-duration: 1s;
+        transform: translateY(6rem);
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .text {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        height: 2.25em;
+    }
+
+    .badge-repost {
+        display: {{ discopy }};
+        justify-content: center;
+        align-items: center;
+        gap: 0.25em;
+        border-radius: 0.5em;
+        background-color: white;
+        color: var(--c-accent);
+        fill: var(--c-accent);
+        font-size: 1.25em;
+        font-weight: bold;
+        height: 100%;
+        padding: 0.25em 0.5em;
+    }
+
+    .avatar {
+        width: 3em;
+        height: 3em;
+        flex-shrink: 0;
+        background-color: rgba(0, 0, 0, 0.15);
+        border-radius: 100em;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .avatar img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .name {
+        font-size: 1.5em;
+        font-weight: bold;
+        background-color: transparent;
+    }
+</style>
+</body>
