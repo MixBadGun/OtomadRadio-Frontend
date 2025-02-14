@@ -1,7 +1,9 @@
 <script setup lang="ts">
+
 const props = defineProps({
     list: [Object]
 })
+
 </script>
 
 <template>
@@ -9,19 +11,21 @@ const props = defineProps({
     <div class="play-top">
         播放列表
     </div>
-    <div v-for="(item, index) in props.list" class="play-single">
-        <div class="play-index">
-            {{ index }}
+    <div class="play-in-list">
+        <div v-for="(item, index) in props.list" :id="'playSingle' + index" class="play-single">
+            <div class="play-index">
+                {{ index + 1 }}
+            </div>
+            <div class="play-title">
+                {{ item.title }}
+            </div>
+            <div class="play-aid">
+                av{{ item.aid }}
+            </div>
         </div>
-        <div class="play-title">
-            {{ item.title }}
+        <div v-if="props.list?.length == 0" class="play-notice">
+            当前列表为空，可以发弹幕<br />「<b>点播</b> BV号 / av号」进行点播！
         </div>
-        <div class="play-aid">
-            av{{ item.aid }}
-        </div>
-    </div>
-    <div v-if="props.list?.length == 0" class="play-notice">
-         当前列表为空，可以发弹幕<br />「<b>点播</b> BV号 / av号」进行点播！
     </div>
 </div>
 </template>
@@ -29,24 +33,30 @@ const props = defineProps({
 <style scoped>
 .play-out-box {
     position: absolute;
-    top: 6.5rem;
+    display: flex;
+    flex-direction: column;
+    top: 7rem;
     left: 1rem;
     width: 18rem;
-    height: 20rem;
+    height: 31.5rem;
     background-color: rgba(255, 255, 255, 0.6);
     border: 2px solid white;
     border-radius: 0.75rem;
     padding: 0.5rem 1rem;
     box-sizing: border-box;
     box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+}
+.play-in-list {
+    flex: 1;
+    overflow-y: scroll;
 }
 .play-index {
-    width: 1.5rem;
+    /* width: 1.5rem; */
+    margin-right: 0.3rem;
     display: flex;
     align-items: center;
     font-size: 2rem;
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.225);
     font-weight: bold;
 }
 .play-notice {
@@ -69,6 +79,7 @@ const props = defineProps({
     display: flex;
     justify-content: space-between;
 }
+
 .play-title {
     font-family: 'HarmonyOS Sans SC';
     display: flex;
@@ -81,7 +92,13 @@ const props = defineProps({
     margin-left: 0.5rem;
     font-family: 'Montserrat';
     font-weight: bold;
-    width: 5rem;
+    width: 5.5rem;
     word-break: break-all;
+}
+
+::-webkit-scrollbar {
+  width: 0; /* Safari,Chrome 隐藏滚动条 */
+  height: 0; /* Safari,Chrome 隐藏滚动条 */
+  display: none; /* 移动端、pad 上Safari，Chrome，隐藏滚动条 */
 }
 </style>

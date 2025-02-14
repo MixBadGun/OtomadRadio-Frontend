@@ -40,6 +40,7 @@ const props = defineProps({
 
 <style scoped>
   .bottom {
+    top: 0.6rem;
       position: absolute;
       display: flex;
       flex-direction: row;
@@ -69,32 +70,17 @@ const props = defineProps({
       filter: drop-shadow(0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2));
       stroke: rgba(255, 255, 255, 0.75);
       stroke-width: 0.5rem;
-      animation-name: slidein;
-      animation-duration: 1s;
-      animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
   .small-vote {
       font-size: 1.2rem;
       text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
       -webkit-text-stroke: 0.05rem rgba(255, 255, 255, 0.75);
-      animation-name: slidein;
-      animation-duration: 1s;
-      animation-delay: 0.1s;
-      animation-fill-mode: forwards;
-      transform: translateY(5rem);
-      animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
   .work {
       display: flex;
       overflow: hidden;
       flex-direction: column;
       margin-left: 0.25rem;
-      animation-name: slidein;
-      animation-duration: 1s;
-      animation-delay: 0.2s;
-      animation-fill-mode: forwards;
-      transform: translateY(6rem);
-      animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
   .title {
       font-size: 2.8rem;
@@ -123,11 +109,6 @@ const props = defineProps({
       border: 1px solid rgba(0, 0, 0, 0.1);
       background-color: rgba(255, 255, 255, 0.5);
       white-space: nowrap;
-      animation-name: slidein;
-      animation-duration: 1s;
-      transform: translateY(6rem);
-      animation-fill-mode: forwards;
-      animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 
   .text {
