@@ -14,10 +14,10 @@ const props = defineProps({
             {{ index }}
         </div>
         <div class="play-title">
-            {{ Object.entries(item)[0][1] }}
+            {{ item.title }}
         </div>
         <div class="play-aid">
-            av{{ Object.entries(item)[0][0] }}
+            av{{ item.aid }}
         </div>
     </div>
     <div v-if="props.list?.length == 0" class="play-notice">

@@ -1,13 +1,14 @@
 <script setup lang="ts">
+import { message } from 'ant-design-vue';
+
 import { onMounted, onUnmounted, ref } from 'vue';
 import PlayList from './components/PlayList.vue';
 import TopInfo from './components/TopInfo.vue';
 
-
 let eventSource: EventSource | null = null;
 
 const play_info = ref();
-const play_list = ref([{12345: "我爱你"},{67890: "你爱我"},{123456789100: "什么都不爱，我只我爱你。我只我爱你。我只我爱你。"},{123456789100: "什么都不爱，我只我爱你。我只我爱你。我只我爱你。"},{123456789100: "什么都不爱，我只我爱你。我只我爱你。我只我爱你。"}]);
+const play_list = ref([{aid: 123,title: "我爱你"}]);
 
 const initSSE = () => {
     eventSource = new EventSource('http://localhost:8080/sse');
@@ -19,6 +20,14 @@ const initSSE = () => {
         }
         if(data.type == "playlist"){
             play_list.value = data.data.playlist;
+        }
+        if(data.type == "notice"){
+            if(data.data.state == "success"){
+              message.success(data.data.message)
+            }
+            if(data.data.state == "error"){
+              message.error(data.data.message)
+            }
         }
     };
  
