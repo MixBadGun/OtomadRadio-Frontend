@@ -95,7 +95,7 @@ function resetTimeline1(){
 }
 
 function resetTimeline3(){
-    t3.clear();
+    t3.clear(true);
 
     t3.from(
         '.play-single',
