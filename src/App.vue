@@ -13,44 +13,51 @@ let eventSource: EventSource | null = null;
 
 let t1 = gsap.timeline();
 let t2 = gsap.timeline();
+let t3 = gsap.timeline();
 
 const play_info = ref();
-const play_list = ref([
-    {aid: 123,title: "我不爱你"},{aid: 123,title: "我不爱你"},{aid: 123,title: "我不爱你"},
-    {aid: 123,title: "我爱你"},{aid: 123,title: "我不爱你"},{aid: 123,title: "我不爱你"},
-    {aid: 123,title: "我爱你"},
-    {aid: 123,title: "我爱你"},
-    {aid: 123,title: "我爱你"},
-    {aid: 123,title: "我爱你"},
-    {aid: 123,title: "我爱你"},
-    {aid: 123,title: "我爱你"}]);
+const play_list = ref([{aid: 123,title: "我不爱你"},{aid: 123,title: "我不爱你"}]);
 
 const initSSE = () => {
     eventSource = new EventSource('http://localhost:8080/sse');
  
     eventSource.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        if(data.type == "playinfo"){
+        switch (data.type) {
+        case "playinfo": {
             play_info.value = data.data.data;
             t2.restart();
+            break;
         }
-        if(data.type == "playlist"){
-            play_list.value = data.data.playlist;
-            resetTimeline1();
+        case "playlist": {
+            new Promise((resolve, reject) => {
+                play_list.value = data.data.playlist;
+                resolve(0);
+            }).then(() => {
+                resetTimeline1();
+                resetTimeline3();
+            })
+            break;
         }
-        if(data.type == "notice"){
-            if(data.data.state == "success"){
-              message.success({
-                content: data.data.message,
-                class: "bigger-top"
-            })
+        case "notice": {
+            switch (data.data.state) {
+                case "success": {
+                    message.success({
+                        content: data.data.message,
+                        class: "bigger-top"
+                        });
+                    break;
+                }
+                case "error": {
+                    message.error({
+                        content: data.data.message,
+                        class: "bigger-top"
+                        });
+                    break;
+                    }
+                }
             }
-            if(data.data.state == "error"){
-              message.error({
-                content: data.data.message,
-                class: "bigger-top"
-            })
-            }
+            break;
         }
     };
  
@@ -59,30 +66,6 @@ const initSSE = () => {
         eventSource?.close();
         initSSE();
     };
-}
-
-function resetTimeline2(){
-    t2.clear()
-
-    t2.from(
-        '.work',
-        {
-            duration: 1,
-            scaleY: 0,
-            ease: 'expo.out'
-        },
-        0
-    )
-
-    t2.from(
-        '.uploader',
-        {
-            duration: 1,
-            scaleY: 0,
-            ease: 'expo.out'
-        },
-        0
-    )
 }
 
 function resetTimeline1(){
@@ -98,7 +81,13 @@ function resetTimeline1(){
       yoyo: true
     });
 
-    t1.from(
+    t1.restart();
+}
+
+function resetTimeline3(){
+    t3.clear();
+
+    t3.from(
         '.play-single',
         {
             duration: 0.5,
@@ -108,13 +97,34 @@ function resetTimeline1(){
         0
     );
 
-    t1.restart();
+    t3.restart();
 }
 
 onMounted(() => {
     initSSE();
     resetTimeline1();
-    resetTimeline2();
+
+    t2.from(
+    '.work',
+    {
+        duration: 1,
+        scaleY: 0,
+        ease: 'expo.out'
+    },
+    0
+    )
+
+    t2.from(
+        '.uploader',
+        {
+            duration: 1,
+            scaleY: 0,
+            ease: 'expo.out'
+        },
+        0
+    )
+
+    resetTimeline3();
 });
  
 onUnmounted(() => {
