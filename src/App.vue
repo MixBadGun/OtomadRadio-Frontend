@@ -41,6 +41,13 @@ const initSSE = () => {
         }
         case "notice": {
             switch (data.data.state) {
+                case "loading": {
+                    message.loading({
+                        content: data.data.message,
+                        class: "bigger-top"
+                        });
+                    break;
+                }
                 case "success": {
                     message.success({
                         content: data.data.message,
