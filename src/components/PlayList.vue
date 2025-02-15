@@ -12,15 +12,20 @@ const props = defineProps({
         播放列表
     </div>
     <div class="play-in-list">
-        <div v-for="(item, index) in props.list" :id="'playSingle' + index" class="play-single">
-            <div class="play-index">
-                {{ index + 1 }}
+        <div v-for="(item, index) in props.list" class="play-single">
+            <div class="play-info">
+                <div class="play-index">
+                    {{ index + 1 }}
+                </div>
+                <div class="play-title">
+                    {{ item.title }}
+                </div>
+                <div class="play-aid">
+                    av{{ item.aid }}
+                </div>
             </div>
-            <div class="play-title">
-                {{ item.title }}
-            </div>
-            <div class="play-aid">
-                av{{ item.aid }}
+            <div class="play-sender">
+                点播: {{ item.sender }}
             </div>
         </div>
         <div v-if="props.list?.length == 0" class="play-notice">
@@ -71,13 +76,24 @@ const props = defineProps({
     font-size: 1.2rem;
     margin-bottom: 0.2rem;
 }
+
+.play-sender {
+    color: #0000007a;
+    font-size: 0.8rem;
+}
+
 .play-single {
-    width: 100%;
-    min-height: 2rem;
-    padding-bottom: 0.25rem;
     border-bottom: 2px solid gray;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    padding-bottom: 0.25rem;
+}
+
+.play-info {
+    width: 100%;
+    min-height: 2rem;
+    display: flex;
+    justify-content: space-between; 
 }
 
 .play-title {

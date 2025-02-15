@@ -16,7 +16,7 @@ let t2 = gsap.timeline();
 let t3 = gsap.timeline();
 
 const play_info = ref();
-const play_list = ref([{aid: 123,title: "我不爱你"},{aid: 123,title: "我不爱你"}]);
+const play_list = ref([{aid: 123,title: "我不爱你",sender: "坏枪"},{aid: 123,title: "我不爱你",sender: "名字超级长的大大大大大大坏枪"}]);
 
 const initSSE = () => {
     eventSource = new EventSource('http://localhost:8080/sse');

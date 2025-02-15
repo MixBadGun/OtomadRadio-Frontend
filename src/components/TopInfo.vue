@@ -12,27 +12,30 @@ const props = defineProps({
           <!-- <div class="small-vote">票</div> -->
       </div>
       <div class="work">
-          <div class="title">{{ props.data?.title }}</div>
+          <div class="title">{{ props.data?.title }} 我爱你</div>
           <div class="id">av{{ props.data?.aid }}</div>
       </div>
   </div>
 
   <div class="uploader">
-      <div class="avatar">
-      <img :src="props.data?.owner.face" />
-      </div>
-      <div class="text">
-      <span class="name">{{ props.data?.owner.name }}</span>
-      <div v-if="props.data?.copyright != 1" class="badge-repost">
-          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-              d="M19.5 8H17V6C17 4.9 16.1 4 15 4H3C1.9 4 1 4.9 1 6V15C1 16.1 1.9 17 3 17C3 18.66 4.34 20 6 20C7.66 20 9 18.66 9 17H15C15 18.66 16.34 20 18 20C19.66 20 21 18.66 21 17H22C22.55 17 23 16.55 23 16V12.67C23 12.24 22.86 11.82 22.6 11.47L20.3 8.4C20.11 8.15 19.81 8 19.5 8ZM6 18C5.45 18 5 17.55 5 17C5 16.45 5.45 16 6 16C6.55 16 7 16.45 7 17C7 17.55 6.55 18 6 18ZM19.5 9.5L21.46 12H17V9.5H19.5ZM18 18C17.45 18 17 17.55 17 17C17 16.45 17.45 16 18 16C18.55 16 19 16.45 19 17C19 17.55 18.55 18 18 18Z"
-          />
-          </svg>
+      <div class="uploader-in">
+        <div class="avatar">
+        <img :src="props.data?.owner.face" />
+        </div>
+        <div class="text">
+        <span class="name">{{ props.data?.owner.name }}</span>
+        <div v-if="props.data?.copyright != 1" class="badge-repost">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M19.5 8H17V6C17 4.9 16.1 4 15 4H3C1.9 4 1 4.9 1 6V15C1 16.1 1.9 17 3 17C3 18.66 4.34 20 6 20C7.66 20 9 18.66 9 17H15C15 18.66 16.34 20 18 20C19.66 20 21 18.66 21 17H22C22.55 17 23 16.55 23 16V12.67C23 12.24 22.86 11.82 22.6 11.47L20.3 8.4C20.11 8.15 19.81 8 19.5 8ZM6 18C5.45 18 5 17.55 5 17C5 16.45 5.45 16 6 16C6.55 16 7 16.45 7 17C7 17.55 6.55 18 6 18ZM19.5 9.5L21.46 12H17V9.5H19.5ZM18 18C17.45 18 17 17.55 17 17C17 16.45 17.45 16 18 16C18.55 16 19 16.45 19 17C19 17.55 18.55 18 18 18Z"
+            />
+            </svg>
 
-          转载
+            转载
+        </div>
+        </div>
       </div>
-      </div>
+      <div v-if="props.data?.sender != '无人点播'" class="sender">点播: <b>{{ props.data?.sender }}</b></div>
   </div>
 </div>
 </template>
@@ -98,17 +101,30 @@ const props = defineProps({
       text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
       -webkit-text-stroke: 0.05rem rgba(255, 255, 255, 0.75);
   }
+
+  .uploader-in {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    white-space: nowrap;
+    gap: 0.75em;
+  }
+
   .uploader {
       display: flex;
       align-items: center;
-      flex-direction: row;
-      gap: 1em;
-      padding: 1em;
-      font-size: 20px;    /* 定义父元素大小 */
+      flex-direction: column;
+      gap: 0.5em;
+      padding: 0.8em;
+      font-size: 18px;    /* 定义父元素大小 */
       border-radius: 0.5em;
       border: 1px solid rgba(0, 0, 0, 0.1);
       background-color: rgba(255, 255, 255, 0.5);
       white-space: nowrap;
+  }
+
+  .sender {
+    font-size: 1.2em;
   }
 
   .text {
