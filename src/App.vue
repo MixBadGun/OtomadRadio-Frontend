@@ -30,7 +30,7 @@ const initSSE = () => {
             break;
         }
         case "playlist": {
-            new Promise((resolve, reject) => {
+            new Promise((resolve, _) => {
                 play_list.value = data.data.playlist;
                 resolve(0);
             }).then(() => {
