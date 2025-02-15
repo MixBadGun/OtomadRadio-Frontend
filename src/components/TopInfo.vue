@@ -12,7 +12,7 @@ const props = defineProps({
           <!-- <div class="small-vote">票</div> -->
       </div>
       <div class="work">
-          <div class="title">{{ props.data?.title }} 我爱你</div>
+          <div class="title">{{ props.data?.title }}</div>
           <div class="id">av{{ props.data?.aid }}</div>
       </div>
   </div>
