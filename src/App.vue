@@ -44,21 +44,24 @@ const initSSE = () => {
                 case "loading": {
                     message.loading({
                         content: data.data.message,
-                        class: "bigger-top"
+                        class: "bigger-top",
+                        key: data.data.sender
                         });
                     break;
                 }
                 case "success": {
                     message.success({
                         content: data.data.message,
-                        class: "bigger-top"
+                        class: "bigger-top",
+                        key: data.data.sender
                         });
                     break;
                 }
                 case "error": {
                     message.error({
                         content: data.data.message,
-                        class: "bigger-top"
+                        class: "bigger-top",
+                        key: data.data.sender
                         });
                     break;
                     }
@@ -132,6 +135,11 @@ onMounted(() => {
     )
 
     resetTimeline3();
+
+    message.loading({
+                        content: "界面被刷新",
+                        class: "bigger-top",
+                    });
 });
  
 onUnmounted(() => {
@@ -164,12 +172,13 @@ onUnmounted(() => {
       font-family: 'HarmonyOS Sans SC';
       overflow: hidden;
   }
-  .bigger-top {
+  .bigger-top div {
+    display: flex;
+    align-items: center;
     font-size: 1.25rem;
     font-weight: bold;
     .anticon {
-        font-size: 1.25rem;
-        transform: translateY(-0.15rem);
+            font-size: 1.25rem;
     }
   }
 </style>
